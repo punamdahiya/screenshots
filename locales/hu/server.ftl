@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Adja meg a kép URL-t az e-mailjében: { $url }
 shotPageKeepFor = Meddig legyen ez a képernyőkép megtartva?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Időpont választása
-shotPageKeepIndefinitely = Határozatlan ideig
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Végtelenségig ∞
 shotPageKeepTenMinutes = 10 percig
 shotPageKeepOneHour = 1 óráig
 shotPageKeepOneDay = 1 napig
@@ -190,8 +193,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Törlés
+annotationCropButton
+    .title = Körülvágás
 annotationSaveButton = Mentés
 annotationCancelButton = Mégse
+annotationCropConfirmButton = Megerősítés
+    .title = Kiválasztás megerősítése
+annotationCropCancelButton = Mégse
+    .title = Kiválasztás megszakítása
 
 
 [[ Shotindex page ]]
@@ -220,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Előző oldal
 shotIndexPageNextPage
     .title = Következő oldal
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ez a kép nem évül el
 
 
 // all metrics strings are optional for translation

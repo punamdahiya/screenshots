@@ -137,7 +137,10 @@ shotPageDMCAIncludeLink = Cofiwch gynnwys URL y llun un eich e-bost: { $url }
 shotPageKeepFor = Pa mor hir dylwn ni gadw'r llun
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Dewis cyfnod
-shotPageKeepIndefinitely = Amhenodol
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Am byth ∞
 shotPageKeepTenMinutes = 10 Munud
 shotPageKeepOneHour = Awr
 shotPageKeepOneDay = Diwrnod
@@ -154,7 +157,7 @@ shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
 timeDiffMinutesAgo = { $number ->
         [one] 1 munud yn ôl
-        [two] { $number } munud yn ôl
+        [two] { $number } funud yn ôl
         [few] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
@@ -201,8 +204,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Clir
+annotationCropButton
+    .title = Tocio
 annotationSaveButton = Cadw
 annotationCancelButton = Diddymu
+annotationCropConfirmButton = Cadarnhau
+    .title = Cadarnhau'r dewis
+annotationCropCancelButton = Diddymu
+    .title = Diddymu'r dewis
 
 
 [[ Shotindex page ]]
@@ -231,6 +240,12 @@ shotIndexPagePreviousPage
     .title = Tudalen flaenorol
 shotIndexPageNextPage
     .title = Tudalen nesaf
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Nid yw'r llun yma'n dod i ben
 
 
 // all metrics strings are optional for translation

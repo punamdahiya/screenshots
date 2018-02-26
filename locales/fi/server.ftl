@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Liitä sähköpostiisi tämän kaappauksen verkko-osoi
 shotPageKeepFor = Kuinka kauan tämä kaappaus tulisi säilyttää?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Valitse aika
-shotPageKeepIndefinitely = toistaiseksi
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Toistaiseksi ∞
 shotPageKeepTenMinutes = 10 minuuttia
 shotPageKeepOneHour = 1 tunti
 shotPageKeepOneDay = 1 päivä
@@ -190,8 +193,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Pyyhi
+annotationCropButton
+    .title = Rajaa
 annotationSaveButton = Tallenna
 annotationCancelButton = Peruuta
+annotationCropConfirmButton = Vahvista
+    .title = Vahvista valinta
+annotationCropCancelButton = Peruuta
+    .title = Peruuta valinta
 
 
 [[ Shotindex page ]]
@@ -220,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Edellinen sivu
 shotIndexPageNextPage
     .title = Seuraava sivu
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tämä kaappaus ei vanhene
 
 
 // all metrics strings are optional for translation

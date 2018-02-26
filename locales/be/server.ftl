@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Калі ласка, дадайце да вашага 
 shotPageKeepFor = Як доўга будзе захоўвацца гэты здымак?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Выберыце час
-shotPageKeepIndefinitely = Бясконца
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Бясконца ∞
 shotPageKeepTenMinutes = 10 хвілін
 shotPageKeepOneHour = 1гадзіну
 shotPageKeepOneDay = 1 дзень
@@ -196,8 +199,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Ачысціць
+annotationCropButton
+    .title = Абрэзаць
 annotationSaveButton = Захаваць
 annotationCancelButton = Скасаваць
+annotationCropConfirmButton = Пацвердзіць
+    .title = Пацвердзіць вылучэнне
+annotationCropCancelButton = Скасаваць
+    .title = Скасаваць вылучэнне
 
 
 [[ Shotindex page ]]
@@ -226,6 +235,12 @@ shotIndexPagePreviousPage
     .title = Папярэдняя старонка
 shotIndexPageNextPage
     .title = Наступная старонка
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Гэты здымак не пратэрмінаваны
 
 
 // all metrics strings are optional for translation

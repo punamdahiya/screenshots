@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = 请在您的电子邮件中包含此截图的网址：
 shotPageKeepFor = 此截图保留多久？
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 选择时间
-shotPageKeepIndefinitely = 无限期
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = 无限 ∞
 shotPageKeepTenMinutes = 10 分钟
 shotPageKeepOneHour = 1 小时
 shotPageKeepOneDay = 1 天
@@ -176,8 +179,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = 清除
+annotationCropButton
+    .title = 裁剪
 annotationSaveButton = 保存
 annotationCancelButton = 取消
+annotationCropConfirmButton = 确认
+    .title = 确认选择
+annotationCropCancelButton = 取消
+    .title = 取消选择
 
 
 [[ Shotindex page ]]
@@ -206,6 +215,12 @@ shotIndexPagePreviousPage
     .title = 上一页
 shotIndexPageNextPage
     .title = 下一页
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = 这张截图不会过期
 
 
 // all metrics strings are optional for translation

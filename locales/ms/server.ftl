@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Sila sertakan URL syot ini dalam e-mel anda: { $url }
 shotPageKeepFor = Berapa lama syot ini perlu disimpan?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pilih masa
-shotPageKeepIndefinitely = Infiniti
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = ∞ selama-lamanya
 shotPageKeepTenMinutes = 10 minit
 shotPageKeepOneHour = 1 Jam
 shotPageKeepOneDay = I Hari
@@ -184,8 +187,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Buang
+annotationCropButton
+    .title = Potong
 annotationSaveButton = Simpan
 annotationCancelButton = Batal
+annotationCropConfirmButton = Sahkan
+    .title = Sahkan pemilihan
+annotationCropCancelButton = Batal
+    .title = Batalkan pemilihan
 
 
 [[ Shotindex page ]]
@@ -214,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Halaman dahulu
 shotIndexPageNextPage
     .title = Halaman berikut
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Syot ini tidak luput
 
 
 // all metrics strings are optional for translation

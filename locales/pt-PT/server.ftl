@@ -97,7 +97,7 @@ shotPageConfirmDelete = Tem a certeza de que deseja apagar esta captura permanen
 shotPageShareButton
     .title = Partilhar
 shotPageCopy = Copiar
-shotPageCopied = Copiado
+shotPageCopied = Copiada
 shotPageShareFacebook
     .title = Partilhar no Facebook
 shotPageShareTwitter
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Por favor inclua o URL desta captura no seu email: { $
 shotPageKeepFor = Por quanto tempo deve esta captura ser retida?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
-shotPageKeepIndefinitely = Indefinidamente
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinidamente ∞
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
@@ -190,8 +193,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Limpar
+annotationCropButton
+    .title = Recortar
 annotationSaveButton = Guardar
 annotationCancelButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar seleção
+annotationCropCancelButton = Cancelar
+    .title = Cancelar seleção
 
 
 [[ Shotindex page ]]
@@ -220,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Página anterior
 shotIndexPageNextPage
     .title = Página seguinte
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Esta captura não expira
 
 
 // all metrics strings are optional for translation

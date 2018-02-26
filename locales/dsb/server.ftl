@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Pšosym pódajśo URL toś togo fota wobrazowki w swó
 shotPageKeepFor = Kak dłujko ma sr toś to foto wobrazowki chowaś?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Cas wubraś
-shotPageKeepIndefinitely = Njepóstajony
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Na pśecej ∞
 shotPageKeepTenMinutes = 10 minutow
 shotPageKeepOneHour = 1 góźina
 shotPageKeepOneDay = 1 źeń
@@ -202,8 +205,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Slědk stajiś
+annotationCropButton
+    .title = Wurězaś
 annotationSaveButton = Składowaś
 annotationCancelButton = Pśetergnuś
+annotationCropConfirmButton = Wobkšuśiś
+    .title = Wuběrk wobkšuśiś
+annotationCropCancelButton = Pśetergnuś
+    .title = Wuběrk pśetergnuś
 
 
 [[ Shotindex page ]]
@@ -232,6 +241,12 @@ shotIndexPagePreviousPage
     .title = Pjerwjejšny bok
 shotIndexPageNextPage
     .title = Pśiducy bok
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Toś to foto wobrazowki njespadnjo
 
 
 // all metrics strings are optional for translation
