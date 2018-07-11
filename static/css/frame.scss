@@ -682,7 +682,6 @@ $bg-white: rgba(255, 255, 255, 0.7);
 @mixin type-box($size) {
   padding: 4px $size * 0.5;
   font-size: $size;
-  height: $size + 8;
 }
 
 @mixin type-color($b, $f) {

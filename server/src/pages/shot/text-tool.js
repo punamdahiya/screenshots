@@ -19,11 +19,8 @@ const FONT_STYLE = "sans-serif";
 const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
-const BACKSPACE_KEYCODE = 46;
-const DELETE_KEYCODE = 8;
-const ENTER_KEYCODE = 13;
-
 let previousTextInputWidth;
+let previousInputText = "";
 
 exports.TextTool = class TextTool extends React.Component {
   constructor(props) {
@@ -51,6 +48,7 @@ exports.TextTool = class TextTool extends React.Component {
   componentDidMount() {
     this.textInput.current.focus();
     previousTextInputWidth = this.textInput.current.clientWidth;
+    this.adjustHeight();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
@@ -58,7 +56,8 @@ exports.TextTool = class TextTool extends React.Component {
 
   componentDidUpdate(oldProps, oldState) {
     if (oldState.textSize !== this.state.textSize) {
-       this.props.toolbarOverrideCallback();
+      this.props.toolbarOverrideCallback();
+      this.adjustHeight();
     }
   }
 
@@ -66,6 +65,12 @@ exports.TextTool = class TextTool extends React.Component {
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
+  }
+
+  adjustHeight() {
+    const styles = window.getComputedStyle(this.textInput.current);
+    const height = parseFloat(styles.lineHeight) + parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+    this.textInput.current.style.minHeight = `${height}px`;
   }
 
   render() {
@@ -150,8 +155,8 @@ exports.TextTool = class TextTool extends React.Component {
     }
     const styles = window.getComputedStyle(this.textInput.current);
     const FONT_SIZE = parseInt(styles["font-size"], 10);
-    const x = this.state.left + parseFloat(styles["padding-left"]);
-    const y = this.state.top + TEXT_INPUT_PADDING + parseFloat(styles["line-height"]) / 2;
+    const x = Math.round(this.state.left + parseFloat(styles["padding-left"]));
+    const y = Math.round(this.state.top + TEXT_INPUT_PADDING + parseFloat(styles["line-height"]) / 2);
 
     const textCanvas = document.createElement("canvas");
     textCanvas.width = this.props.baseCanvas.width;
@@ -188,31 +193,27 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   onKeyDown(e) {
-    // Allow backspace to delete text
-    const key = e.keyCode || e.charCode;
-    if ( key === BACKSPACE_KEYCODE || key === DELETE_KEYCODE ) {
-      return;
-    }
-    // Stop entering text if text content is longer than image width and
-    // prevent new line insertion if user press Enter key
-    if (parseFloat(this.textInput.current.clientWidth + 2 * DRAG_DIV_PADDING) > this.canvasCssWidth ||
-        key === ENTER_KEYCODE) {
-      e.preventDefault();
-    }
+    this.adjustX(e);
   }
 
   onKeyUp(e) {
-    // Update left state to left position of text input
+    // Fix to remove <br> element inserted on press of space bar inside contenteditable div
+    while (this.textInput.current.firstElementChild) {
+      this.textInput.current.removeChild(this.textInput.current.firstElementChild);
+    }
+    this.adjustX(e);
+  }
+
+  adjustX(e) {
+    if (previousInputText === this.textInput.current.textContent) {
+      return;
+    }
     const rectInput = e.target.getBoundingClientRect();
     const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
     const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
     this.setState({left: rectInput.left - rectCanvas.left - WIDTH_DIFF / 2});
     previousTextInputWidth = this.textInput.current.clientWidth;
-
-    // Fix to remove <br> element inserted on press of space bar inside contenteditable div
-    while (this.textInput.current.firstElementChild) {
-      this.textInput.current.removeChild(this.textInput.current.firstElementChild);
-    }
+    previousInputText = this.textInput.current.textContent;
   }
 
   onChangeTextSize(event) {
