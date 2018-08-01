@@ -47,6 +47,66 @@
   }
 }
 
+.promo-panel {
+  @include respond-to("small") {
+    right: 10px;
+    top: 65px;
+  }
+
+  @include respond-to("medium") {
+    right: 80px;
+    top: 75px;
+  }
+  right: 80px;
+  top: 75px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 150px;
+  z-index: 999;
+  padding: 5px;
+  text-align: center;
+
+  .title {
+    font-size: 14px;
+    line-height: 14px;
+    margin: 5px;
+  }
+
+  .message {
+    font-size: 12px;
+    margin: 5px 2px;
+  }
+
+  .message-text {
+    margin: 0 2px;
+  }
+
+  .link {
+    cursor: pointer;
+    color: #009ec0;
+  }
+
+  a.box-close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    color: #000;
+    width: 15px;
+    height: 15px;
+    line-height: 12px;
+  }
+
+  .box-close:before {
+    content: "×";
+  }
+
+  .box-close:hover {
+    background-color: $light-hover;
+  }
+}
+
 .shot-alt-actions {
   #downloadIcon {
     margin-right: 4px;
@@ -292,6 +352,10 @@
   background-position: center center;
   margin-right: $grid-unit * 0.5;
   transition: background-image 150ms $bezier;
+}
+
+.button.edit.highlight {
+  background-color: $light-hover;
 }
 
 .edit-highlight {
