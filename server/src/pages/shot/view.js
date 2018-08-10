@@ -9,7 +9,6 @@ const { PromoDialog } = require("./promo-dialog");
 const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
-const classnames = require("classnames");
 const { Editor } = require("./editor");
 const { isValidClipImageUrl } = require("../../../shared/shot");
 
@@ -183,7 +182,7 @@ class Body extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({highlightEditButton: this.props.highlightEditButton});
+    this.setState({highlightEditButton: this.props.highlightEditButton || this.props.promoDialog});
     this.setState({promoDialog: this.props.promoDialog});
   }
 
@@ -362,10 +361,12 @@ class Body extends React.Component {
         confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
         cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
 
-      const highlightEdit = this.state.promoDialog;
-      editButton = <Localized id="shotPageEditButton">
-        <button className={classnames("button", "transparent", "edit", {"highlight": highlightEdit})} title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
-      </Localized>;
+      editButton = <div className="edit-shot-button">
+        <Localized id="shotPageEditButton">
+          <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
+        </Localized>
+        <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
+        </div>;
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
@@ -436,7 +437,6 @@ class Body extends React.Component {
             { this.props.enableAnnotations ? editButton : null }
             { highlight }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
-            <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">

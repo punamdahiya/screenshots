@@ -48,20 +48,11 @@
 }
 
 .promo-panel {
-  @include respond-to("small") {
-    right: 10px;
-    top: 65px;
-  }
-
-  @include respond-to("medium") {
-    right: 80px;
-    top: 75px;
-  }
-  right: 80px;
-  top: 75px;
+  position: absolute;
+  top: 45px;
+  right: -45px;
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
-  position: absolute;
   width: 150px;
   z-index: 999;
   padding: 5px;
@@ -80,11 +71,6 @@
 
   .message-text {
     margin: 0 2px;
-  }
-
-  .link {
-    cursor: pointer;
-    color: #009ec0;
   }
 
   a.box-close {
@@ -110,6 +96,10 @@
 .shot-alt-actions {
   #downloadIcon {
     margin-right: 4px;
+  }
+
+  .edit-shot-button {
+    position: relative;
   }
 
   @include respond-to("small") {
@@ -352,10 +342,6 @@
   background-position: center center;
   margin-right: $grid-unit * 0.5;
   transition: background-image 150ms $bezier;
-}
-
-.button.edit.highlight {
-  background-color: $light-hover;
 }
 
 .edit-highlight {
