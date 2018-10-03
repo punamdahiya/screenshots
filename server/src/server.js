@@ -545,6 +545,14 @@ app.post("/api/register", function(req, res) {
   });
 });
 
+function sendAccountIdCookie(req, res, accountId) {
+  if (accountId) {
+    const keygrip = dbschema.getKeygrip("auth");
+    const cookies = new Cookies(req, res, {keys: keygrip});
+    cookies.set("accountid", accountId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
+  }
+}
+
 function sendAuthInfo(req, res, params) {
   const { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) === -1) {
@@ -557,9 +565,7 @@ function sendAuthInfo(req, res, params) {
   const keygrip = dbschema.getKeygrip("auth");
   const cookies = new Cookies(req, res, {keys: keygrip});
   cookies.set("user", deviceId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
-  if (accountId) {
-    cookies.set("accountid", accountId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
-  }
+  sendAccountIdCookie(req, res, accountId);
   cookies.set("abtests", encodedAbTests, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   const authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   const responseJson = {
@@ -1150,16 +1156,12 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
             // and display Fxa SignIn button state when request doesn't have accountId
             // right after fxa-ouath/confirm-login redirection.
             const pageUri = endpoint ? "/" + endpoint : "/";
-            // FIXME:
-            // We should be setting the accountid cookie in both paths, like this:
-            const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
-            cookies.set("accountid", accountId, {signed: true});
+            sendAccountIdCookie(req, res, accountId);
             res.redirect(pageUri);
           });
         }).catch(next);
       } else {
-        const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip("auth")});
-        cookies.set("accountid", accountId, {signed: true});
+        sendAccountIdCookie(req, res, accountId);
         const pageUri = endpoint ? "/" + endpoint : "/";
         res.redirect(pageUri);
       }
